@@ -2,10 +2,8 @@ config_rewrite: replace
 langcode: en
 status: true
 dependencies:
-  config:
-    - workflows.workflow.editorial
   module:
-    - content_moderation
+    - lightning_workflow
     - node
     - user
 id: content
@@ -62,10 +60,12 @@ display:
             title: title
             type: type
             name: name
+            status: status
             changed: changed
-            moderation_state: moderation_state
-            forward_revision_exists: forward_revision_exists
-            operations: operations
+            edit_node: edit_node
+            delete_node: delete_node
+            dropbutton: dropbutton
+            timestamp: title
           info:
             node_bulk_form:
               align: ''
@@ -93,6 +93,13 @@ display:
               separator: ''
               empty_column: false
               responsive: priority-low
+            status:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             changed:
               sortable: true
               default_sort_order: desc
@@ -100,21 +107,30 @@ display:
               separator: ''
               empty_column: false
               responsive: priority-low
-            moderation_state:
+            edit_node:
               sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            forward_revision_exists:
-              sortable: true
+            delete_node:
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            operations:
+            dropbutton:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            timestamp:
+              sortable: false
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
@@ -268,12 +284,12 @@ display:
           entity_field: changed
         moderation_state:
           id: moderation_state
-          table: content_moderation_state_field_data
+          table: node_field_data
           field: moderation_state
           relationship: none
           group_type: group
-          admin_label: 'Moderation state'
-          label: 'Moderation state'
+          admin_label: ''
+          label: Status
           exclude: false
           alter:
             alter_text: false
@@ -310,15 +326,15 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: N/A
+          empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: string
+          click_sort_column: target_id
+          type: entity_reference_label
           settings:
-            link_to_entity: false
-          group_column: value
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -328,9 +344,59 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: content_moderation_state
+          entity_type: node
           entity_field: moderation_state
           plugin_id: field
+        forward_revision_exists:
+          id: forward_revision_exists
+          table: node_field_data
+          field: forward_revision_exists
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Has unpublished edits'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          entity_type: node
+          plugin_id: forward_revision_exists
         operations:
           id: operations
           table: node
@@ -389,18 +455,13 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: in
-          value:
-            all: all
-            editorial-draft: editorial-draft
-            editorial-review: editorial-review
-            editorial-published: editorial-published
-            editorial-archived: editorial-archived
+          operator: '='
+          value: ''
           group: 1
           exposed: true
           expose:
             operator_id: moderation_state_op
-            label: 'Moderation state'
+            label: Status
             description: ''
             use_operator: false
             operator: moderation_state_op
@@ -412,14 +473,6 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-              page_creator: '0'
-              layout_manager: '0'
-              page_reviewer: '0'
-              landing_page_creator: '0'
-              landing_page_reviewer: '0'
-              media_creator: '0'
-              media_manager: '0'
-            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -433,7 +486,8 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           entity_type: node
-          plugin_id: moderation_state_filter
+          entity_field: moderation_state
+          plugin_id: string
         type:
           id: type
           table: node_field_data
@@ -582,6 +636,15 @@ display:
           admin_label: author
           required: true
           plugin_id: standard
+        latest_revision__node:
+          id: latest_revision__node
+          table: workbench_revision_tracker
+          field: latest_revision__node
+          relationship: none
+          group_type: group
+          admin_label: 'latest revision'
+          required: false
+          plugin_id: standard
       show_admin_links: false
       filter_groups:
         operator: AND
@@ -601,8 +664,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       max-age: 0
-      tags:
-        - 'config:workflow_list'
+      tags: {  }
   page_1:
     display_options:
       path: admin/content/node
@@ -619,8 +681,7 @@ display:
         description: 'Find and manage content'
         menu_name: admin
         weight: -10
-      display_extenders:
-        metatag_display_extender: {  }
+      display_extenders: {  }
     display_plugin: page
     display_title: Page
     id: page_1
@@ -634,5 +695,4 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       max-age: 0
-      tags:
-        - 'config:workflow_list'
+      tags: {  }
