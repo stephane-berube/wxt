@@ -228,11 +228,7 @@
         "patches": {
             "drupal/bootstrap": {
                 "Enter drupal/bootstrap patch #2834732 description here":
-                "https://www.drupal.org/files/issues/temporarily_disable-2881978-2.patch",
-                "Enter drupal/bootstrap patch #2905729 description here":
-                "https://www.drupal.org/files/issues/bootstrap-improve_alterManager_performance-2905729-5.patch",
-                "Enter drupal/bootstrap patch #2905747 description here":
-                "https://www.drupal.org/files/issues/bootstrap-theme_context_generation_expensive-2905747-2.patch"
+                "https://www.drupal.org/files/issues/temporarily_disable-2881978-2.patch"
             },
             "drupal/blog": {
                 "Enter drupal/blog patch #2834732 description here":
@@ -367,7 +363,6 @@
         "drupal/admin_toolbar": "1.23",
         "drupal/block_class": "1.0-alpha1",
         "drupal/blog": "dev-2.x#43a2171",
-        "drupal/bootstrap": "3.7",
         "drupal/bootstrap_layouts": "5.0",
         "drupal/button_link": "1.1",
         "drupal/ckeditor_codemirror": "1.1",
@@ -403,7 +398,7 @@
         "drupal/views_autocomplete_filters": "1.2",
         "drupal/webform": "5.0-rc12",
         "drupal/webform_migrate": "1.0-alpha1",
-        "drupal/wxt_bootstrap": "1.1",
+        "drupalwxt/wxt_bootstrap": "dev-8.x-1.x",
         "drupal/wxt_library": "1.0",
         "w8tcha/ckeditor-codemirror": "1.16",
         "wet-boew/wet-boew": "4.0.27",
