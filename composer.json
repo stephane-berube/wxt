@@ -203,6 +203,10 @@
                 "Enter drupal/panels patch #2910704 description here":
                 "https://www.drupal.org/files/issues/panels-ipe-card-flip-ie-error-2910704.diff"
             },
+            "drupal/s3fs": {
+                "Enter drupal/s3fs patch #2986407 description here":
+                "https://www.drupal.org/files/issues/2018-07-17/s3fs-2986407-save-memory-2.patch"
+            },
             "drupal/views_bootstrap": {
                 "Enter drupal/views_bootstrap patch #2878352 description here":
                 "https://www.drupal.org/files/issues/add_bootstrap_panels-2878352-3.patch"
@@ -245,7 +249,7 @@
         "drupal/metatag": "1.7",
         "drupal/migrate_plus": "4.0",
         "drupal/migrate_tools": "4.0",
-        "drupal/s3fs": "3.0-alpha10",
+        "drupal/s3fs": "3.0-alpha13",
         "drupal/url_embed": "1.0-alpha1",
         "drupal/views_bootstrap": "3.1",
         "drupal/scheduled_updates": "1.0.0-alpha7",
