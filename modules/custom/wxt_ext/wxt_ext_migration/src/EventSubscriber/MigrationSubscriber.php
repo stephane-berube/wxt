@@ -199,17 +199,6 @@ class MigrationSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Add a specific entityqueue.
-   */
-  public function entityQueueCreate($queue, $destBid) {
-    $entity_subqueue = $this->entityManager->getStorage('entity_subqueue')->load($queue);
-    $items = $entity_subqueue->get('items')->getValue();
-    $items[] = ['target_id' => $destBid[0]];
-    $entity_subqueue->set('items', $items);
-    $entity_subqueue->save();
-  }
-
-  /**
    * Add a menu link with dependency support.
    */
   public function menuLinkDependency($title, $link, $translations, $destBid, $weight = 0, $menu = 'main') {
