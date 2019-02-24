@@ -165,13 +165,7 @@ class MigrationSubscriber implements EventSubscriberInterface {
    * Code to run after a migration has been imported.
    */
   public function onMigrationPostImport(MigrateImportEvent $event) {
-    // Landing Page logic.
-    if ($event->getMigration()->id() == 'gcweb_node_landing_page') {
-      // Set front page to panelized "homepage".
-      $this->config->getEditable('system.site')
-        ->set('page.front', '/homepage')
-        ->save(TRUE);
-    }
+
   }
 
   /**
@@ -185,7 +179,19 @@ class MigrationSubscriber implements EventSubscriberInterface {
    * Code to run after a migration row has been saved.
    */
   public function onMigrationPostRowSave(MigratePostRowSaveEvent $event) {
-
+    // Landing Page logic.
+      if ($event->getMigration()->id() == 'gcweb_node_landing_page' ||
+          $event->getMigration()->id() == 'gcweb_node_landing_page_translation') {
+      // Set front page to panelized "homepage".
+      $name = $event->getRow()->getSourceProperty('name');
+      // Bug in homepage detection logic prevents using alias.
+      $destinationIds = $event->getDestinationIdValues();
+      if ($name == 'homepage') {
+        $this->config->getEditable('system.site')
+          ->set('page.front', '/node/' . $destinationIds[0])
+          ->save(TRUE);
+      }
+    }
   }
 
   /**

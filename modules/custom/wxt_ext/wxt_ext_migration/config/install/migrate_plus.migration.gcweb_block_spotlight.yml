@@ -1,4 +1,4 @@
-id: gcweb_ext_block_spotlight
+id: gcweb_block_spotlight
 migration_tags:
   - spotlight
 migration_group: gcweb
