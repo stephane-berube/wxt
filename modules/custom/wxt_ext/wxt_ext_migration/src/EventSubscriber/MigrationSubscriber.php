@@ -180,8 +180,8 @@ class MigrationSubscriber implements EventSubscriberInterface {
    */
   public function onMigrationPostRowSave(MigratePostRowSaveEvent $event) {
     // Landing Page logic.
-      if ($event->getMigration()->id() == 'gcweb_node_landing_page' ||
-          $event->getMigration()->id() == 'gcweb_node_landing_page_translation') {
+    if ($event->getMigration()->id() == 'gcweb_node_landing_page' ||
+        $event->getMigration()->id() == 'gcweb_node_landing_page_translation') {
       // Set front page to panelized "homepage".
       $name = $event->getRow()->getSourceProperty('name');
       // Bug in homepage detection logic prevents using alias.
