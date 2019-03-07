@@ -159,10 +159,6 @@
                 "Enter drupal/ctools patch #2924356 description here":
                 "https://www.drupal.org/files/issues/ctools-entity_field_rendered_twice-2924356-2.patch"
             },
-            "drupal/fontawesome": {
-                "Enter drupal/fontawesome patch #2745741 description":
-                "https://www.drupal.org/files/issues/2018-11-13/fontawesome-2745741-4.patch"
-            },
             "drupal/inline_entity_form": {
                 "Enter drupal/inline_entity_form patch #2367235 description here":
                 "https://www.drupal.org/files/issues/support_entity_revision-2367235-92.patch"
@@ -176,6 +172,10 @@
                 "https://www.drupal.org/files/issues/menu_block-follow-2756675-32.patch",
                 "Enter drupal/menu_block patch #2919579 description here":
                 "https://www.drupal.org/files/issues/patch_menu_block_with-2919579-3.patch"
+            },
+            "drupal/migrate_tools": {
+                "Enter drupal/migrate_tools patch #3024399 description here":
+                "https://www.drupal.org/files/issues/2019-02-05/migrate-tools_fix-drush-options_3024399-23.patch"
             },
             "drupal/page_manager": {
                 "Enter drupal/page_manager patch #2626090 description here":
@@ -213,7 +213,7 @@
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.4",
         "drupal-composer/drupal-scaffold": "^2.0.0",
-        "acquia/lightning": "3.2.4",
+        "acquia/lightning": "3.2.6",
         "drupal/admin_toolbar": "1.25",
         "drupal/block_class": "1.0",
         "drupal/blog": "dev-2.x#43a2171",
@@ -222,14 +222,16 @@
         "drupal/ckeditor_codemirror": "2.2",
         "drupal/config_rewrite": "1.1",
         "drupal/config_update": "1.6",
-        "drupal/core": "8.6.7",
+        "drupal/ctools": "3.0",
+        "drupal/core": "8.6.10",
         "drupal/diff": "1.0-rc2",
         "drupal/entity_reference_revisions": "1.6",
         "drupal/features": "^3.0",
         "drupal/field_group": "1.0",
-        "drupal/fontawesome": "^2.9",
+        "drupal/fontawesome": "^2.12",
         "drupal/group": "1.0-rc2",
         "drupal/inline_entity_form": "1.0-rc1",
+        "drupal/jsonapi": "^2.3",
         "drupal/linkit": "5.0-beta8",
         "drupal/media_entity": "2.0.0-beta3",
         "drupal/media_entity_document": "1.x-dev",
@@ -240,11 +242,11 @@
         "drupal/password_policy": "3.0-alpha4",
         "drupal/simple_sitemap": "2.12",
         "drupal/page_manager": "4.0-beta3",
-        "drupal/paragraphs": "1.5",
+        "drupal/paragraphs": "1.6",
         "drupal/field_formatter": "1.2",
         "drupal/file_entity": "2.0-beta6",
-        "drupal/metatag": "1.7",
-        "drupal/migrate_plus": "4.0",
+        "drupal/metatag": "^1.8",
+        "drupal/migrate_plus": "4.1",
         "drupal/migrate_tools": "4.1",
         "drupal/s3fs": "3.0-alpha13",
         "drupal/url_embed": "1.0-alpha1",
