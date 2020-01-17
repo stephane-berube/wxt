@@ -29,6 +29,6 @@ projects[drupal][patch][] = https://www.drupal.org/files/issues/2019-10-22/29143
 projects[drupal][patch][] = https://www.drupal.org/files/issues/2019-01-18/2938129-pagetitle-11.patch
 projects[drupal][patch][] = https://www.drupal.org/files/issues/2018-12-05/3017710-20.patch
 projects[drupal][patch][] = https://www.drupal.org/files/issues/2019-09-16/0001-Issue-2488350-by-alexpott-Wim-Leers-Dimiter-catch-da.patch
+projects[drupal][patch][] = https://www.drupal.org/files/issues/2019-12-16/3096566-23-combined-3096241-3.patch
 projects[drupal][patch][] = https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch
 projects[drupal][patch][] = https://www.drupal.org/files/issues/2019-11-27/2815221-125.patch
-projects[drupal][patch][] = https://www.drupal.org/files/issues/2019-12-16/3096566-23-combined-3096241-3.patch
